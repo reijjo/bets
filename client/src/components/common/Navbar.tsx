@@ -6,8 +6,12 @@ const Navbar = () => {
       <div className="full-width">
         <div className="nav-logo">logo</div>
         <div className="nav-links">
-          <Link to="/">Try Demo</Link>
-          <Link to="/">Login</Link>
+          <Link to="/" className="underline-hover">
+            Try Demo
+          </Link>
+          <Link to="/" className="underline-hover">
+            Login
+          </Link>
           <Link to="/" className="nav-register">
             Register
           </Link>

@@ -1,10 +1,45 @@
 /* Homepage */
+
+/* Decorations */
+/* Excel sheet image */
+.excel-sheet-img {
+  position: relative;
+  z-index: 0;
+
+  width: 100%;
+}
+.excel-sheet-img::before {
+  content: "";
+  position: absolute;
+  top: 300px;
+  right: -150px;
+
+  overflow-x: hidden;
+
+  /* z-index: 2; */
+
+  height: 600px;
+  width: 600px;
+  background-image: url("../images/geisha.png");
+  background-image: radial-gradient(
+    closest-side,
+    rgb(220, 137, 106),
+    transparent
+  );
+
+  border-radius: 50%;
+
+  opacity: 0.3;
+}
+/* Excel sheet image END */
+/* Decorations END */
+
 .hero {
   /* border: 1px solid white; */
 
   display: grid;
   grid-template-rows: 60vh 1fr;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 50%);
   row-gap: 16px;
   place-items: center;
 
@@ -36,9 +71,11 @@
     height: 100%;
     width: 100%;
 
-    img {
+    & img {
       height: 100%;
       width: 100%;
+
+      opacity: 0.8;
     }
   }
 
@@ -49,6 +86,7 @@
     margin: 16px 0;
 
     width: calc(5 * 8.33vw);
+    max-width: 80%;
   }
 }
 
@@ -57,7 +95,7 @@
 
   grid-column: 1 / 3;
 
-  background-color: rgba(7, 66, 100, 0.6);
+  background-color: rgba(7, 66, 100, 0.9);
 
   display: grid;
   grid-template-rows: auto 1fr;
@@ -97,7 +135,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -122,8 +160,8 @@
 
 .mini-hero {
   /* background-color: var(--warning); */
-  margin: 0 auto;
-  margin-top: 120px;
+  margin: 60px auto;
+  /* margin-top: 120px; */
 
   max-width: 1200px;
 
@@ -131,6 +169,8 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 300px;
   column-gap: 32px;
+
+  padding: 0 12px;
 
   .mini-hero-text {
     height: 100%;
@@ -151,6 +191,16 @@
       width: calc(4 * 8.33vw);
     }
   }
+}
+
+.two-images {
+  background-image: linear-gradient(
+    180deg,
+    var(--bg-dark) 12%,
+    var(--secondary-800) 47%,
+    var(--bg-dark) 90%
+  );
+  /* color: var(--black); */
 }
 
 .depo-with,
@@ -201,6 +251,11 @@
   .testimonials-cards {
     display: grid;
     grid-template-columns: repeat(3, calc(3 * 8.33vw));
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(100px, 200px)
+    ); /* Adjust minmax value as needed */
+    /* column-gap: 32px; */
     column-gap: 32px;
     justify-content: center;
     place-items: center;
@@ -209,6 +264,7 @@
     width: 100%;
 
     margin-top: 60px;
+    padding: 0 8px;
 
     /* border: 1px solid red; */
 
@@ -228,16 +284,18 @@
 
       background-color: rgba(7, 66, 100, 0.6);
 
+      box-shadow: 0 4px 8px rgba(31, 100, 142, 0.2);
+
       .test-card-img {
-        width: 120px;
-        height: 120px;
+        width: min(50%, 120px);
+        height: min(40%, 120px);
 
         position: absolute;
         left: 50%;
-        top: -40%;
+        top: -30%;
         transform: translate(-50%, 50%);
 
-        border: 1px solid var(--secondary-500);
+        /* border: 1px solid var(--secondary-500); */
         border-radius: 50%;
 
         overflow: hidden;

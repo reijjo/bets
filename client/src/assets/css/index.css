@@ -17,7 +17,7 @@
   --secondary-200: #f4d2c6;
   --secondary-300: #f2b6a0;
   --secondary-400: #e89d82;
-  --secondary-500: #dc896a;
+  --secondary-500: rgb(220, 137, 106);
   --secondary-600: #cf7756;
   --secondary-700: #c16747;
   --secondary-800: #ac5e41;
@@ -54,6 +54,8 @@ body {
 
   background-color: var(--bg-dark);
   color: var(--white);
+
+  overflow-x: hidden;
 }
 
 /* Headers */
@@ -98,7 +100,10 @@ h4 {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 8vh 1fr 8vh;
+
+  /* overflow-y: hidden; */
 }
+
 /* Layout in App.tsx END */
 
 /* Main */
@@ -109,12 +114,22 @@ main {
   width: min(100%, max(1366px));
   height: auto;
 
-  /* background-color: var(--primary-800); */
-
-  /* border: 1px solid red; */
+  position: relative;
 
   display: flex;
   flex-direction: column;
+
+  & * {
+    z-index: 1;
+  }
+
+  @media only screen and (max-width: 768px) {
+    background-color: var(--primary-700);
+  }
+
+  @media only screen and (max-width: 480px) {
+    background-color: var(--primary-200);
+  }
 }
 /* Main END */
 
@@ -133,7 +148,7 @@ footer {
     margin: 0 auto;
     padding: 0 24px;
 
-    z-index: 5;
+    z-index: 5 !important;
 
     width: min(100%, max(1366px));
     /* width: 100%; */
@@ -160,15 +175,46 @@ footer {
     letter-spacing: 1px;
 
     width: 40%;
+    max-width: 400px;
 
-    & a:hover {
-      color: var(--secondary-500);
+    & a.underline-hover {
+      display: inline-block;
+      position: relative;
+    }
+
+    & a.underline-hover:after {
+      content: ""; /* Add content after the element */
+      position: absolute; /* Position absolute for pseudo-element */
+      width: 100%; /* Full width */
+      transform: scaleX(0); /* Initial scale of 0 for underline effect */
+      height: 1px; /* Height of the underline */
+      bottom: -6px; /* Align to bottom */
+      left: 0; /* Align to left */
+      background-color: white; /* Background color of the underline */
+      transform-origin: bottom right; /* Set transform origin */
+      transition: transform 0.3s ease-out; /* Transition effect for the underline */
+    }
+
+    & a.underline-hover:hover:after {
+      transform: scaleX(1); /* Scale the underline on hover */
+      transform-origin: bottom left; /* Set transform origin */
     }
 
     .nav-register {
       border: 2px solid var(--primary-300);
-      padding: 6px 12px;
-      border-radius: 8px;
+      padding: 6px 16px;
+      border-radius: 40px;
+
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: var(--primary-700);
+        box-shadow: 0 4px 8px rgba(31, 100, 142, 0.2);
+      }
+
+      &:active {
+        border-style: inset;
+      }
     }
   }
 
@@ -182,6 +228,8 @@ nav {
   top: 0;
 
   z-index: 5;
+
+  /* background-color: var(--primary-500); */
 }
 
 footer {
